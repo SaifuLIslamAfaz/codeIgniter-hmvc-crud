@@ -1,65 +1,103 @@
-<?php $this->load->view('front/header')?>
- <body>
- 
-	<div class="col col-lg-12">
-	
-	<div class="alert alert-success alert-dismissible fade show" role="alert">
-	  <strong><?php 
-	
-            $msg = $this->session->flashdata('msg');
-                if(isset($msg)){
-					
-                echo "<h4 class='text-center text-success'>" . $msg . "</h4></br>";
-				echo "<h4 class='text-center text-info'>". $this->session->userdata('name')."</h4></br>";
-				echo "<h4 class='text-center text-info'>". $this->session->userdata('id')."</h4></br>";
-            }
-	
-    ?>
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		<span aria-hidden="true">&times;</span>
-	  </button>
-	</div>
-	</div>
-	
-	
-		<div class="container">
-  <div class="row justify-content-md-center">
-    <div class="col col-lg-12">
-	
-    <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Address</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-	
-	<?php  foreach ($users as $i=>$row) { ?>
-		<tr> 
-			<td><?php echo $i+1 ;?></td></a>  
-			<td><?php echo $row['name'];?></td></a>  
-			<td><?php echo $row['email'];?></td></a>  
-			<td><?php echo $row['address'];?></td></a>  
-			<td><a href="user/edituser/<?=$row['id']?>">Edit</a> || <a onclick="return confirm('Are you sure?');" href="user/delete_user/<?=$row['id']?>">Delete</a></td></a>  
-		 </tr>  
-	<?php } ?> 
-  </tbody>
-  
-  
-</table>
-	
-    </div>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+    <title>CI admin dashboard</title>
+	<?php $this->load->view('backend/headerlink');?>
 
-			<!-- Optional JavaScript -->
-			<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+<body onload="info_noti()">
+
+<!-- Start wrapper-->
+ <div id="wrapper">
+ 
+  <!--Start sidebar-wrapper-->
+	<!-- sidebar include here-->
+	<?php $this->load->view('backend/sidebar')?>
+  <!--End sidebar-wrapper-->
+
+<!--Start topbar header-->
+	<?php $this->load->view('backend/header')?>
+<!--end topbar header-->
+
+<div class="clearfix"></div>
+	
+  <div class="content-wrapper">
+    <div class="container-fluid">
+
+      <!--Start Dashboard Content-->
+      
+       
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header"><i class="fa fa-table"></i> User List</div>
+            <div class="card-body">
+              <div class="table-responsive">
+              <table id="example" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#SL</th>
+                        <th>Name</th>
+                        <th>E-mail</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+					<?php  foreach ($users as $i=>$row) { ?>
+						<tr> 
+							<td><?php echo $i+1 ;?></td></a>  
+							<td><?php echo $row['name'];?></td></a>  
+							<td><?php echo $row['email'];?></td></a>  
+							<td><?php echo $row['address'];?></td></a>  
+							<td>
+								<a  class="btn btn-inverse-danger waves-effect waves-light m-1" href="user/edituser/<?=$row['id']?>">Edit</a> 
+								<a  class="btn btn-inverse-warning waves-effect waves-light m-1" onclick="return confirm('Are you sure?');" href="user/delete_user/<?=$row['id']?>">Delete</a>
+							</td>  
+						 </tr>  
+					<?php } ?> 
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>#SL</th>
+                        <th>Name</th>
+                        <th>E-mail</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+            </table>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Row-->
+     <!-- </div> End Row-->
+
+    
+      <!--</div><!-- End Row-->
+	<!-- </div>-->
+	  
+       <!--End Dashboard Content-->
+
+    </div>
+    <!-- End container-fluid-->
+    
+    </div><!--End content-wrapper-->
+   <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+	
+	<!--Start footer-->
+		<?php $this->load->view('backend/footer');?>
+	<!--End footer-->
+   
+  </div><!--End wrapper-->
+
+  <!-- Bootstrap core JavaScript-->
+  <!---script link here--->
+  <?php $this->load->view('backend/footerlink');?>
+  
+</body>
+
+<!-- Mirrored from codervent.com/dashrock/color-admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Feb 2019 03:56:12 GMT -->
 </html>

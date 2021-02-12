@@ -20,7 +20,7 @@ class User extends MX_Controller
     }
 	
 	public  function user_register(){
-            $this->load->view('home');
+            $this->load->view('create');
        
     }
 	
@@ -37,7 +37,7 @@ class User extends MX_Controller
 			//redirect('user');
 			//$this->load->helper('form');
 			$data['empty_field'] = TRUE;
-			$this->load->view('home',$data);
+			$this->load->view('create',$data);
 		}else{
 		 $data['name']=$this->input->post('name');
          $data['email']=$this->input->post('email');
@@ -75,7 +75,10 @@ class User extends MX_Controller
 		
 		if($this->form_validation->run()==FALSE){
 			$data['empty_field'] = TRUE;
-			$this->load->view('home',$data);
+			//$this->load->view('home',$data);
+			$this->db->where('id', $id);
+            $data['users'] = $this->db->get('tbl_test')->row_array();
+			$this->load->view('user/edit_user',$data);
 		}else{
 		
     if (isset($id)) {
