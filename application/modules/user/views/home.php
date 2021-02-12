@@ -4,6 +4,19 @@
   <div class="row justify-content-md-center">
 	<div class="col col-lg-12">
 	
+	
+		<!--<div class="alert alert-info" role="alert">
+			<h3>Field must not be empty</h3>
+			<p><?php //echo validation_errors(); ?></p>
+		</div>-->
+		<?php if(isset($empty_field)) : ?>
+			<div class="alert alert-danger" role="alert">
+		  <h3>Error</h3>
+		   <p>Field Must not be empty, please try again.</p>
+		</div>
+		<?php endif; ?>
+    
+	
 	 <form method="post" action="user/registration_form">
 		  <div class="form-group">
 			<label for="exampleFormControlInput1">Name</label>

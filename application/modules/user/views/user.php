@@ -1,5 +1,27 @@
 <?php $this->load->view('front/header')?>
  <body>
+ 
+	<div class="col col-lg-12">
+	
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+	  <strong><?php 
+	
+            $msg = $this->session->flashdata('msg');
+                if(isset($msg)){
+					
+                echo "<h4 class='text-center text-success'>" . $msg . "</h4></br>";
+				echo "<h4 class='text-center text-info'>". $this->session->userdata('name')."</h4></br>";
+				echo "<h4 class='text-center text-info'>". $this->session->userdata('id')."</h4></br>";
+            }
+	
+    ?>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+	</div>
+	
+	
 		<div class="container">
   <div class="row justify-content-md-center">
     <div class="col col-lg-12">

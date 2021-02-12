@@ -3,7 +3,12 @@
 		<div class="container">
   <div class="row justify-content-md-center">
     <div class="col col-lg-10">
-	
+	<?php if(isset($empty_field)) : ?>
+			<div class="alert alert-danger" role="alert">
+		  <h3>Error</h3>
+		   <p>Field Must not be empty, please try again.</p>
+		</div>
+		<?php endif; ?>
      <form method="post" action="user/update_user/<?=$users['id']?>">
 		  <div class="form-group">
 			<label for="exampleFormControlInput1">Name</label>
